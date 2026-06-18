@@ -1,0 +1,974 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apex Care Clinic | Trusted Health Services</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* CSS Variables for Premium Medical Theme */
+        :root {
+            --primary: #0F52BA; /* Sapphire Blue */
+            --primary-light: #E6F0FA;
+            --primary-dark: #0A3A82;
+            --secondary: #00B4D8;
+            --accent: #10B981; /* Success Green */
+            --text-dark: #1E293B;
+            --text-muted: #64748B;
+            --bg-main: #F8FAFC;
+            --bg-card: #FFFFFF;
+            --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+            --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.025);
+            --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.05), 0 10px 10px -5px rgba(0, 0, 0, 0.02);
+            --radius: 16px;
+            --transition: all 0.3s ease;
+        }
+
+        /* Reset & Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-main);
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+        img { max-width: 100%; height: auto; display: block; }
+
+        /* Typography */
+        h1, h2, h3, h4 { color: var(--text-dark); font-weight: 700; line-height: 1.2; }
+        h1 { font-size: clamp(2.5rem, 5vw, 4rem); letter-spacing: -1px; }
+        h2 { font-size: clamp(2rem, 3vw, 2.5rem); margin-bottom: 1rem; }
+        p { color: var(--text-muted); }
+
+        /* Layout & Utilities */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section-padding { padding: 100px 0; }
+        .text-center { text-align: center; }
+        
+        .section-header {
+            max-width: 600px;
+            margin: 0 auto 50px;
+            text-align: center;
+        }
+
+        .tag {
+            display: inline-block;
+            background: var(--primary-light);
+            color: var(--primary);
+            padding: 6px 16px;
+            border-radius: 50px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+            letter-spacing: 0.5px;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 14px 28px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+            outline: none;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+            box-shadow: 0 4px 14px rgba(15, 82, 186, 0.3);
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(15, 82, 186, 0.4);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary-light);
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            transition: var(--transition);
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .navbar.scrolled {
+            box-shadow: var(--shadow-sm);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--primary);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            font-weight: 500;
+            color: var(--text-dark);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .mobile-toggle {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-dark);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding-top: 160px;
+            padding-bottom: 100px;
+            background: linear-gradient(135deg, #ffffff 0%, var(--primary-light) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .hero-content h1 span {
+            color: var(--primary);
+        }
+
+        .hero-content p {
+            font-size: 1.125rem;
+            margin: 24px 0 32px;
+            max-width: 500px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+        }
+
+        .hero-image {
+            position: relative;
+        }
+
+        .hero-image img {
+            border-radius: 24px;
+            box-shadow: var(--shadow-lg);
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-blob {
+            position: absolute;
+            top: -10%;
+            right: -10%;
+            width: 120%;
+            height: 120%;
+            background: var(--secondary);
+            opacity: 0.1;
+            border-radius: 50%;
+            z-index: 1;
+            filter: blur(60px);
+        }
+
+        /* Stats Row */
+        .stats {
+            display: flex;
+            gap: 40px;
+            margin-top: 40px;
+            padding-top: 40px;
+            border-top: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .stat-item h4 { font-size: 1.5rem; color: var(--primary); }
+        .stat-item p { font-size: 0.875rem; font-weight: 500; }
+
+        /* Services Section */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background: var(--bg-card);
+            padding: 40px 30px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+            border: 1px solid rgba(0,0,0,0.03);
+            text-align: left;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--primary-light);
+        }
+
+        .service-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--primary-light);
+            color: var(--primary);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 24px;
+        }
+
+        .service-card h3 { margin-bottom: 12px; font-size: 1.25rem; }
+
+        /* Doctor Profile */
+        .doctor-section { background: white; }
+        
+        .doctor-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 60px;
+            align-items: center;
+            background: var(--bg-main);
+            border-radius: 24px;
+            padding: 40px;
+        }
+
+        .doctor-img {
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+        }
+
+        .doctor-info h2 { margin-bottom: 8px; }
+        .doctor-qual { 
+            color: var(--primary); 
+            font-weight: 600; 
+            font-size: 1.1rem;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .doctor-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .doc-stat-card {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        /* Appointment Form */
+        .appointment-section {
+            background: var(--primary-dark);
+            color: white;
+            position: relative;
+        }
+
+        .appointment-section h2, .appointment-section h2+p, .appointment-section .section-header {
+            color: white;
+        }
+
+        .appointment-section p { color: var(--primary-light); }
+        .appointment-section .tag { background: rgba(255,255,255,0.1); color: white; }
+
+        .form-wrapper {
+            background: white;
+            padding: 50px;
+            border-radius: 24px;
+            box-shadow: var(--shadow-lg);
+            max-width: 800px;
+            margin: 0 auto;
+            color: var(--text-dark);
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .form-group.full-width { grid-column: 1 / -1; }
+
+        label {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 14px 16px;
+            border: 1px solid #E2E8F0;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: var(--transition);
+            background: var(--bg-main);
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px var(--primary-light);
+            background: white;
+        }
+
+        /* Contact & Map */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 40px;
+        }
+
+        .contact-cards {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .c-card {
+            background: white;
+            padding: 24px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-sm);
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+        }
+
+        .c-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--primary-light);
+            color: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            flex-shrink: 0;
+        }
+
+        .c-info h4 { margin-bottom: 4px; font-size: 1.1rem; }
+        .c-info p { margin: 0; font-size: 0.95rem; }
+
+        .map-container {
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            height: 100%;
+            min-height: 400px;
+        }
+
+        /* Footer */
+        footer {
+            background: #0F172A;
+            color: #94A3B8;
+            padding: 60px 0 30px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-logo {
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .footer-col h4 {
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        .footer-links {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .footer-links a:hover { color: white; }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.875rem;
+        }
+
+        /* Floating WhatsApp Button */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: #25D366;
+            color: white;
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            box-shadow: var(--shadow-lg);
+            z-index: 100;
+            transition: var(--transition);
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            background: #20BA56;
+        }
+
+        /* Success Modal */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(15, 23, 42, 0.7);
+            backdrop-filter: blur(4px);
+            z-index: 2000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .modal-overlay.active .modal-content {
+            transform: scale(1);
+        }
+
+        .modal-icon {
+            width: 80px;
+            height: 80px;
+            background: #D1FAE5;
+            color: var(--accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            margin: 0 auto 20px;
+        }
+
+        .modal-content h3 { margin-bottom: 12px; }
+        .modal-content p { margin-bottom: 24px; }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .hero-container { grid-template-columns: 1fr; text-align: center; }
+            .hero-content p { margin: 24px auto 32px; }
+            .hero-buttons { justify-content: center; }
+            .stats { justify-content: center; }
+            .doctor-wrapper { grid-template-columns: 1fr; }
+            .contact-grid { grid-template-columns: 1fr; }
+            .footer-grid { grid-template-columns: 1fr 1fr; }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 80px);
+                background: white;
+                flex-direction: column;
+                padding: 40px 20px;
+                transition: var(--transition);
+            }
+            .nav-links.active { left: 0; }
+            .nav-links .btn { width: 100%; }
+            .mobile-toggle { display: block; }
+            .form-grid { grid-template-columns: 1fr; }
+            .form-wrapper { padding: 30px 20px; }
+            .footer-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="container nav-container">
+            <a href="#" class="logo">
+                <i class="fa-solid fa-heart-pulse"></i>
+                Apex Care
+            </a>
+            <div class="nav-links" id="navLinks">
+                <a href="#home">Home</a>
+                <a href="#services">Services</a>
+                <a href="#doctor">Our Specialist</a>
+                <a href="#contact">Contact</a>
+                <a href="#book" class="btn btn-primary">Book Appointment</a>
+            </div>
+            <div class="mobile-toggle" id="mobileToggle">
+                <i class="fa-solid fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container hero-container">
+            <div class="hero-content">
+                <span class="tag">Quality Care, Trusted Health Services</span>
+                <h1>Modern Healthcare for you and your <span>Family</span></h1>
+                <p>Experience compassionate care with state-of-the-art medical facilities. We prioritize your well-being through expert diagnosis and personalized treatment plans.</p>
+                <div class="hero-buttons">
+                    <a href="#book" class="btn btn-primary">
+                        <i class="fa-regular fa-calendar-check"></i> Book Now
+                    </a>
+                    <a href="#contact" class="btn btn-outline">Contact Us</a>
+                </div>
+                <div class="stats">
+                    <div class="stat-item">
+                        <h4>10k+</h4>
+                        <p>Happy Patients</p>
+                    </div>
+                    <div class="stat-item">
+                        <h4>15+</h4>
+                        <p>Years Experience</p>
+                    </div>
+                    <div class="stat-item">
+                        <h4>4.9</h4>
+                        <p>Rating (Google)</p>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="hero-blob"></div>
+                <!-- Using a professional placeholder representing a medical environment -->
+                <img src="https://images.unsplash.com/photo-1638202993928-7267aad84c31?auto=format&fit=crop&q=80&w=800" alt="Doctor consulting patient">
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="section-padding" id="services">
+        <div class="container">
+            <div class="section-header">
+                <span class="tag">Our Departments</span>
+                <h2>Comprehensive Clinical Services</h2>
+                <p>We provide a wide range of specialized medical treatments tailored to your specific health needs under one roof.</p>
+            </div>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon"><i class="fa-solid fa-tooth"></i></div>
+                    <h3>Dental Care</h3>
+                    <p>Complete oral health solutions including routine checkups, cleaning, root canals, and cosmetic dentistry.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon"><i class="fa-solid fa-spa"></i></div>
+                    <h3>Skin Treatment</h3>
+                    <p>Advanced dermatological care for acne, pigmentation, anti-aging, and overall skin rejuvenation.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon"><i class="fa-solid fa-person-walking"></i></div>
+                    <h3>Physiotherapy</h3>
+                    <p>Rehabilitation and pain management techniques to restore movement and function post-injury.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon"><i class="fa-solid fa-stethoscope"></i></div>
+                    <h3>General Consultation</h3>
+                    <p>Expert primary care for acute and chronic illnesses, ensuring accurate diagnosis and treatment.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon"><i class="fa-solid fa-file-medical"></i></div>
+                    <h3>Health Checkups</h3>
+                    <p>Comprehensive preventive screening packages to monitor and maintain your long-term health.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Doctor Profile Section -->
+    <section class="section-padding doctor-section" id="doctor">
+        <div class="container">
+            <div class="doctor-wrapper">
+                <div class="doctor-img">
+                    <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&q=80&w=600" alt="Dr. Sarah Jenkins">
+                </div>
+                <div class="doctor-info">
+                    <span class="tag">Lead Specialist</span>
+                    <h2>Dr. Sarah Jenkins</h2>
+                    <div class="doctor-qual">
+                        <i class="fa-solid fa-graduation-cap"></i> MBBS, MD (Internal Medicine)
+                    </div>
+                    <p>With over 15 years of clinical excellence, Dr. Jenkins believes in a holistic approach to medicine. She has successfully treated thousands of patients, focusing on preventative care and evidence-based treatments. Her empathetic nature ensures that every patient feels heard and cared for.</p>
+                    
+                    <div class="doctor-stats">
+                        <div class="doc-stat-card">
+                            <i class="fa-solid fa-award" style="color: var(--primary); font-size: 1.5rem; margin-bottom: 10px;"></i>
+                            <h4 style="margin-bottom: 5px;">Board Certified</h4>
+                            <p style="font-size: 0.85rem;">Medical Council of UK</p>
+                        </div>
+                        <div class="doc-stat-card">
+                            <i class="fa-solid fa-clock-rotate-left" style="color: var(--primary); font-size: 1.5rem; margin-bottom: 10px;"></i>
+                            <h4 style="margin-bottom: 5px;">High Success</h4>
+                            <p style="font-size: 0.85rem;">98% positive outcomes</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Appointment Form Section -->
+    <section class="section-padding appointment-section" id="book">
+        <div class="container">
+            <div class="section-header">
+                <span class="tag">Online Booking</span>
+                <h2>Schedule Your Visit</h2>
+                <p>Skip the waiting room queue. Book your preferred slot online and we will confirm your appointment shortly.</p>
+            </div>
+
+            <div class="form-wrapper">
+                <form id="appointmentForm">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="patName">Full Name *</label>
+                            <input type="text" id="patName" required placeholder="John Doe">
+                        </div>
+                        <div class="form-group">
+                            <label for="patPhone">Phone Number *</label>
+                            <input type="tel" id="patPhone" required placeholder="+44 123 456 7890">
+                        </div>
+                        <div class="form-group full-width">
+                            <label for="patEmail">Email Address</label>
+                            <input type="email" id="patEmail" placeholder="john@example.com">
+                        </div>
+                        <div class="form-group">
+                            <label for="patService">Service Required *</label>
+                            <select id="patService" required>
+                                <option value="" disabled selected>Select a service</option>
+                                <option value="dental">Dental Care</option>
+                                <option value="skin">Skin Treatment</option>
+                                <option value="physio">Physiotherapy</option>
+                                <option value="general">General Consultation</option>
+                                <option value="checkup">Health Checkup</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="patDate">Preferred Date *</label>
+                            <input type="date" id="patDate" required>
+                        </div>
+                        <div class="form-group full-width">
+                            <label for="patReason">Reason for Visit / Symptoms *</label>
+                            <textarea id="patReason" rows="4" required placeholder="Briefly describe your symptoms or reason for visiting..."></textarea>
+                        </div>
+                        <div class="form-group full-width">
+                            <button type="submit" class="btn btn-primary" style="width: 100%; padding: 16px; font-size: 1.1rem;">
+                                Confirm Appointment Request
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact & Map Section -->
+    <section class="section-padding" id="contact">
+        <div class="container">
+            <div class="section-header">
+                <span class="tag">Get In Touch</span>
+                <h2>Visit Our Clinic</h2>
+                <p>We are conveniently located in the city center with ample parking space available for patients.</p>
+            </div>
+
+            <div class="contact-grid">
+                <div class="contact-cards">
+                    <div class="c-card">
+                        <div class="c-icon"><i class="fa-solid fa-location-dot"></i></div>
+                        <div class="c-info">
+                            <h4>Clinic Address</h4>
+                            <p>124 Health Avenue, Medical District<br>Cardiff, CF10 1EP, UK</p>
+                        </div>
+                    </div>
+                    <div class="c-card">
+                        <div class="c-icon"><i class="fa-solid fa-phone"></i></div>
+                        <div class="c-info">
+                            <h4>Phone & WhatsApp</h4>
+                            <p>+44 7700 900077<br>Emergency: +44 7700 900911</p>
+                        </div>
+                    </div>
+                    <div class="c-card">
+                        <div class="c-icon"><i class="fa-solid fa-envelope"></i></div>
+                        <div class="c-info">
+                            <h4>Email Support</h4>
+                            <p>care@apexclinic.com<br>appointments@apexclinic.com</p>
+                        </div>
+                    </div>
+                    <div class="c-card">
+                        <div class="c-icon"><i class="fa-regular fa-clock"></i></div>
+                        <div class="c-info">
+                            <h4>Working Hours</h4>
+                            <p>Mon - Fri: 09:00 AM - 07:00 PM<br>Sat - Sun: 10:00 AM - 02:00 PM</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="map-container">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d39691.07164998394!2d-3.213271708892187!3d51.48158330000001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x486e02d434ec53f5%3A0x143406db6586670e!2sCardiff%2C%20UK!5e0!3m2!1sen!2sus!4v1690000000000!5m2!1sen!2sus" 
+                        width="100%" 
+                        height="100%" 
+                        style="border:0;" 
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="footer-logo">
+                        <i class="fa-solid fa-heart-pulse"></i> Apex Care
+                    </div>
+                    <p style="color: #94A3B8; max-width: 300px;">Providing world-class medical facilities and compassionate care to our community. Your health is our priority.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <div class="footer-links">
+                        <a href="#home">Home</a>
+                        <a href="#services">Our Services</a>
+                        <a href="#doctor">Specialists</a>
+                        <a href="#book">Book Appointment</a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Legal</h4>
+                    <div class="footer-links">
+                        <a href="#">Privacy Policy</a>
+                        <a href="#">Terms of Service</a>
+                        <a href="#">Patient Rights</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                &copy; 2026 Apex Care Clinic. Powered by ClinicOS.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating WhatsApp -->
+    <a href="https://wa.me/447700900077" target="_blank" class="whatsapp-float" aria-label="Chat on WhatsApp">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
+    <!-- Success Modal -->
+    <div class="modal-overlay" id="successModal">
+        <div class="modal-content">
+            <div class="modal-icon">
+                <i class="fa-solid fa-check"></i>
+            </div>
+            <h3>Request Received!</h3>
+            <p>Your appointment request has been successfully submitted. Our reception desk will contact you shortly to confirm your time slot.</p>
+            <button class="btn btn-primary" onclick="closeModal()" style="width: 100%;">Done</button>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        // Set minimum date for appointment input to today
+        const dateInput = document.getElementById('patDate');
+        const today = new Date().toISOString().split('T')[0];
+        dateInput.setAttribute('min', today);
+
+        // Mobile Menu Toggle
+        const mobileToggle = document.getElementById('mobileToggle');
+        const navLinks = document.getElementById('navLinks');
+        const navLinksItems = navLinks.querySelectorAll('a');
+
+        mobileToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            const icon = mobileToggle.querySelector('i');
+            if(navLinks.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-xmark');
+            } else {
+                icon.classList.remove('fa-xmark');
+                icon.classList.add('fa-bars');
+            }
+        });
+
+        // Close mobile menu on link click
+        navLinksItems.forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                mobileToggle.querySelector('i').classList.remove('fa-xmark');
+                mobileToggle.querySelector('i').classList.add('fa-bars');
+            });
+        });
+
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Form Submission Logic
+        const form = document.getElementById('appointmentForm');
+        const modal = document.getElementById('successModal');
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            // Collect Data
+            const appointmentData = {
+                id: 'APT-' + Math.floor(Math.random() * 10000),
+                name: document.getElementById('patName').value,
+                phone: document.getElementById('patPhone').value,
+                email: document.getElementById('patEmail').value,
+                service: document.getElementById('patService').value,
+                date: document.getElementById('patDate').value,
+                reason: document.getElementById('patReason').value,
+                timestamp: new Date().toISOString()
+            };
+
+            // Store in LocalStorage (Simulating CRM Save)
+            let appointments = JSON.parse(localStorage.getItem('clinicOS_appointments')) || [];
+            appointments.push(appointmentData);
+            localStorage.setItem('clinicOS_appointments', JSON.stringify(appointments));
+
+            // Show Success Modal
+            modal.classList.add('active');
+            
+            // Reset Form
+            form.reset();
+        });
+
+        // Close Modal Function
+        function closeModal() {
+            modal.classList.remove('active');
+        }
+
+        // Close modal on outside click
+        modal.addEventListener('click', function(e) {
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+</html>
